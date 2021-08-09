@@ -65,7 +65,7 @@ count_neg_rate = 0
 symbol_negativo = []
 contrato_tasa_negativa = []
 for rate,expiration,symbol in zip(df.dir_rate, df.days, df.symbol):
-	if rate / expiration < 0.012: # % Tasa directa diaria < 4% Anualizada
+	if rate / expiration < 0.003: # % Tasa directa diaria < 1% Anualizada
 		count_neg_rate+=1
 		contrato_tasa_negativa.append(symbol)
 		symbol_negativo.append(rate)
@@ -86,27 +86,27 @@ else:
 
 # ENVIAR MAIL DE ALERTA TASA NEGATIVA PARA CERRAR SINTETICO AHORA
 		
-# if count_neg_rate >= 1:
+if count_neg_rate >= 1:
 	
-# 	sender_email = ""
-# 	receiver_email = [""]
-# 	password = ""
-# 	subject= "Alerta Tasas Sintetico"
+	sender_email = ""
+	receiver_email = [""]
+	password = ""
+	subject= "Alerta Tasas Sintetico"
 
-# 	msg = EmailMessage()
-#	msg.set_content(f"""Contratos con tasa aproximandose a cero: {count_neg_rate} \n \n {df_pair} \n \n \n \n Sinteticos \n\n {df}""") #email body
-# 	msg["Subject"] = subject
-# 	msg["From"] = 'Alertas Sinteticos <{sender_email}>'
-# 	msg["To"] = receiver_email
+	msg = EmailMessage()
+	msg.set_content(f"""Contratos con tasa aproximandose a cero: {count_neg_rate} \n \n {df_pair} \n \n \n \n Sinteticos \n\n {df}""") #email body
+	msg["Subject"] = subject
+	msg["From"] = 'Alertas Sinteticos <{sender_email}>'
+	msg["To"] = receiver_email
 
-# 	# Create a secure SSL context
-# 	context = ssl.create_default_context()
+	Create a secure SSL context
+	context = ssl.create_default_context()
 
-# 	with smtplib.SMTP(host="smtp.gmail.com", port=587) as smtp:
-#     		smtp.starttls(context=context)
-#     		smtp.login(sender_email, password)
-#     		smtp.send_message(msg)
-#     		print("\n" + 'Email Sent' + "\n")
+	with smtplib.SMTP(host="smtp.gmail.com", port=587) as smtp:
+		smtp.starttls(context=context)
+		smtp.login(sender_email, password)
+		smtp.send_message(msg)
+		print("\n" + 'Email Sent' + "\n")
 
 
 # GENERAR EXCEL FILE
