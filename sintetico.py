@@ -90,6 +90,7 @@ else:
 	
 # 	sender_email = ""
 # 	receiver_email = [""]
+# 	password = ""
 # 	subject= "Alerta Tasas Sintetico"
 
 # 	msg = EmailMessage()
@@ -97,9 +98,6 @@ else:
 # 	msg["Subject"] = subject
 # 	msg["From"] = 'Alertas Sinteticos <{sender_email}>'
 # 	msg["To"] = receiver_email
-
-	
-# 	password = ""
 
 # 	# Create a secure SSL context
 # 	context = ssl.create_default_context()
